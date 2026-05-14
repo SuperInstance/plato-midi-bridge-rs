@@ -10,19 +10,21 @@
 //! ## Usage
 //!
 //! ```rust
-//! use plato_midi_bridge::{StyleVector, EisensteinLattice, PenroseEncoder};
+//! use plato_midi_bridge::{StyleVector, EisensteinLattice, PenroseEncoder, PHI};
 //!
 //! // Create a style vector from raw features
-//! let style = StyleVector::new(&[
-//!     0.5, 0.3, 0.8, 0.1, 0.6,  // pitch dims
-//!     // ... 109 dims total
-//! ]);
+//! let style = StyleVector::new(&[0.5; 109]);
 //!
 //! // Encode in Eisenstein lattice
-//! let chamber = EisensteinLattice::chamber(&style, &[0.1, 0.2, 0.3, 0.4, 0.5, 0.6]);
+//! let coupling = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.0];
+//! let chamber = EisensteinLattice::chamber(&coupling);
+//! assert!(chamber < 12);
 //!
 //! // Encode in Penrose tiling
-//! let penrose = PenroseEncoder::encode(&style);
+//! let encoder = PenroseEncoder::new(None);
+//! let v = [1.0, 0.5, 0.7, 0.3, 0.6];
+//! let (px, py, accepted) = encoder.encode(&v);
+//! assert!(accepted);
 //! ```
 
 mod eisenstein;
@@ -35,7 +37,7 @@ pub use penrose::PenroseEncoder;
 pub use style::StyleVector;
 pub use multiscale::ScaleLevel;
 
-use std::f64::consts::{PI, SQRT_2};
+use std::f64::consts::PI;
 
 /// Golden ratio φ = (1 + √5) / 2
 pub const PHI: f64 = 1.6180339887498948482045868343656381177;

@@ -13,7 +13,7 @@
 /// The acceptance window is a regular decagon inscribed in a circle of radius R.
 /// By default, R = 2.0 * φ, where φ = (1+√5)/2 ≈ 1.618.
 
-use crate::{PHI, FIFTH_ROOTS};
+use crate::PHI;
 
 #[derive(Debug, Clone)]
 pub struct PenroseEncoder {
