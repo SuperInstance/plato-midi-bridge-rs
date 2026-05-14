@@ -1,0 +1,19 @@
+[package]
+name = "plato-midi-bridge"
+version = "0.1.0"
+edition = "2021"
+description = "Style decomposition for MIDI — Eisenstein lattices, Penrose tilings, and multi-scale musical analysis"
+license = "AGPL-3.0"
+authors = ["SuperInstance"]
+repository = "https://github.com/SuperInstance/plato-midi-bridge"
+keywords = ["midi", "music-analysis", "plato", "eisenstein", "penrose"]
+categories = ["multimedia::audio", "science", "mathematics"]
+
+[dependencies]
+# No external dependencies for core types
+# MIDI parsing and file I/O are handled by the Python package
+# This crate provides the mathematical core
+
+[lib]
+name = "plato_midi_bridge"
+path = "src/lib.rs"
